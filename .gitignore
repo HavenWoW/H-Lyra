@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+target/
+src-tauri/target/
+
+# Build artifacts
+dist/
+dist-ssr/
+bin/
+*.local
+Lyra.exe
+
+# IDE / System
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db

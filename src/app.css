@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F0F2F5] text-slate-800 font-sans overflow-hidden antialiased select-none;
+  }
+
+  /* Disable legacy spin buttons on number inputs */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield !important;
+    appearance: textfield !important;
+  }
+
+  /* Custom High-Contrast Modern Selection */
+  ::selection {
+    background-color: #0D6EFD;
+    color: #FFFFFF;
+  }
+
+  /* Remove default WebView focus rings */
+  button:focus,
+  a:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none !important;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #2563EB !important;
+    outline-offset: 2px;
+  }
+}
+
+/* ==========================================================================
+   Modern Checkboxes & Radios (No Legacy Windows Widgets)
+   ========================================================================== */
+input[type="checkbox"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+  border: 1.5px solid #94A3B8;
+  background-color: #FFFFFF;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+input[type="checkbox"]:hover {
+  border-color: #2563EB;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #2563EB;
+  border-color: #2563EB;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  background-color: #FFFFFF;
+  transform: scale(1);
+}
+
+/* Dark context checkboxes */
+.dark-context input[type="checkbox"],
+form input[type="checkbox"] {
+  border: 1.5px solid #475569;
+  background-color: #1E293B;
+}
+
+.dark-context input[type="checkbox"]:checked,
+form input[type="checkbox"]:checked {
+  background-color: #2563EB;
+  border-color: #2563EB;
+}
+
+input[type="radio"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.5px solid #94A3B8;
+  background-color: #FFFFFF;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+input[type="radio"]:checked {
+  border-color: #2563EB;
+}
+
+input[type="radio"]:checked::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #2563EB;
+}
+
+/* ==========================================================================
+   High-Precision Modern Scrollbars (No Windows 95 Bevels)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E2E8F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563EB;
+}
+
+/* Dark sidebar scrollbar */
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: #111726;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: #23304E;
+  border-radius: 3px;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+/* ==========================================================================
+   Top Bar & Header
+   ========================================================================== */
+.lyra-top-bar {
+  @apply bg-white text-slate-800 border-b border-slate-200 px-5 py-2.5 flex items-center justify-between font-mono text-xs z-20 flex-shrink-0 shadow-sm;
+}
+
+.lyra-top-bar .entity-badge {
+  @apply font-bold text-slate-900 bg-slate-100 px-3 py-1 rounded border border-slate-200 flex items-center gap-2;
+}
+
+/* Category Title */
+.category-title {
+  @apply text-xs font-bold uppercase tracking-wider text-blue-600 pb-1.5 border-b border-slate-200 flex items-center gap-2 mb-3 mt-1;
+}
+
+/* ==========================================================================
+   Cards & Content Surfaces
+   ========================================================================== */
+.haven-card {
+  @apply bg-white border border-slate-200 rounded-lg shadow-sm;
+}
+
+.haven-card-sub {
+  @apply bg-slate-50 border border-slate-200 rounded-md p-3;
+}
+
+/* Inputs on Light Background */
+.haven-input {
+  @apply bg-white border border-slate-300 text-slate-800 px-3 py-1.5 rounded text-xs font-mono focus:border-blue-600 focus:ring-1 focus:ring-blue-600/30 transition-all;
+}
+
+.haven-input-sm {
+  @apply bg-white border border-slate-300 text-slate-800 px-2 py-1 rounded text-[11px] font-mono focus:border-blue-600 transition-all;
+}
+
+/* Custom Modern Select Dropdowns */
+select.haven-input,
+select.haven-input-sm,
+select {
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.6rem center !important;
+  background-size: 0.75em !important;
+  padding-right: 1.8rem !important;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.haven-button-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-1.5 rounded text-xs font-semibold transition-all shadow-sm hover:shadow active:scale-95 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5;
+}
+
+.haven-button-secondary {
+  @apply bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded text-xs font-medium transition-all cursor-pointer active:scale-95 disabled:opacity-50 flex items-center gap-1.5 shadow-sm;
+}
+
+.haven-button-gold {
+  @apply bg-amber-600 hover:bg-amber-700 text-white px-3.5 py-1.5 rounded text-xs font-semibold transition-all shadow-sm active:scale-95 cursor-pointer flex items-center gap-1.5;
+}
+
+.haven-button-danger {
+  @apply bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-semibold transition-all active:scale-95 cursor-pointer flex items-center gap-1.5;
+}
+
+/* ==========================================================================
+   Data Tables
+   ========================================================================== */
+.haven-table {
+  @apply w-full text-left border-collapse text-xs;
+}
+
+.haven-table th {
+  @apply bg-slate-100 text-slate-600 font-semibold px-3 py-2 border-b border-slate-200 uppercase tracking-wider text-[10px] whitespace-nowrap;
+}
+
+.haven-table td {
+  @apply px-3 py-2 border-b border-slate-100 font-mono text-slate-700 transition-colors whitespace-nowrap bg-white;
+}
+
+.haven-table tr:hover td {
+  @apply bg-blue-50/60 text-slate-900;
+}
+
+.haven-table tr:nth-child(even) td {
+  @apply bg-slate-50/50;
+}
+
+/* Tab Navigation Strip */
+.tab-strip {
+  @apply flex items-center space-x-1 border-b border-slate-200 bg-white px-4 pt-2 overflow-x-auto flex-shrink-0 shadow-sm;
+}
+
+.tab-btn {
+  @apply px-3.5 py-2 rounded-t-md text-xs font-medium transition-all flex items-center gap-1.5 border-t border-l border-r border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-50;
+}
+
+.tab-btn.active {
+  @apply text-blue-600 bg-white border-slate-200 border-b-white font-bold shadow-sm;
+}
