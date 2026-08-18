@@ -303,12 +303,12 @@ export const CREATURE_TYPE_FLAGS: FlagOption[] = [
 ];
 
 export const CREATURE_TYPE_FLAGS2: FlagOption[] = [
-  { bit: 0, name: 'UNK1 (1)' },
-  { bit: 1, name: 'UNK2 (2)' },
-  { bit: 2, name: 'UNK3 (4)' },
-  { bit: 3, name: 'UNK4 (8)' },
-  { bit: 4, name: 'UNK5 (16)' },
-  { bit: 5, name: 'UNK6 (32)' },
+  { bit: 0, name: 'PREDICTIVE_POWER_REGEN (1)' },
+  { bit: 1, name: 'HIDE_LEVEL_INFO_IN_TOOLTIP (2)' },
+  { bit: 2, name: 'HIDE_HEALTH_BAR_UNDER_TOOLTIP (4)' },
+  { bit: 3, name: 'NEVER_DISPLAY_EMOTE_OR_CHAT_TEXT_IN_A_CHAT_BUBBLE (8)' },
+  { bit: 4, name: 'NO_DEATH_THUD (16)' },
+  { bit: 5, name: 'NO_INTERACT_ON_LEFT_CLICK (32)' },
   { bit: 6, name: 'UNK7 (64)' },
   { bit: 7, name: 'UNK8 (128)' },
 ];
