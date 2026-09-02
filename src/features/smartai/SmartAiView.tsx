@@ -34,6 +34,7 @@ export const SmartAiView: React.FC<SmartAiViewProps> = ({
   const [searching, setSearching] = useState(false);
 
   // Editor state
+  const [isEditorMode, setIsEditorMode] = useState(false);
   const [currentEntry, setCurrentEntry] = useState<number>(propSelectedScript?.entryorguid || 30);
   const [currentSourceType, setCurrentSourceType] = useState<number>(propSelectedScript?.sourceType ?? 0);
   const [scripts, setScripts] = useState<SmartScriptRow[]>([]);
@@ -41,11 +42,18 @@ export const SmartAiView: React.FC<SmartAiViewProps> = ({
   const [isDirty, setIsDirty] = useState(false);
 
   useEffect(() => {
-    if (propSelectedScript) {
-      setCurrentEntry(propSelectedScript.entryorguid);
-      setCurrentSourceType(propSelectedScript.sourceType);
-      loadScriptGroup(propSelectedScript.entryorguid, propSelectedScript.sourceType);
-    }
+  if (propSelectedScript) {
+    setCurrentEntry(propSelectedScript.entryorguid);
+    setCurrentSourceType(propSelectedScript.sourceType);
+    loadScriptGroup(propSelectedScript.entryorguid, propSelectedScript.sourceType);
+    setIsEditorMode(true);
+  } else {
+    // Parent cleared the selection – reset local editor state
+    setIsEditorMode(false);
+    setScripts([]);
+    setInitialScripts([]);
+    setIsDirty(false);
+  }
   }, [propSelectedScript]);
 
   useEffect(() => {
@@ -144,10 +152,11 @@ export const SmartAiView: React.FC<SmartAiViewProps> = ({
         setScripts(loaded);
         setInitialScripts(JSON.parse(JSON.stringify(loaded)));
         setIsDirty(false);
+        setIsEditorMode(true);
 
-        if (propOnSelectScript) {
-          propOnSelectScript({ entryorguid: entry, sourceType });
-        }
+        //if (propOnSelectScript) {
+        //  propOnSelectScript({ entryorguid: entry, sourceType });
+        //}
         if (onNavigateSubItem) {
           onNavigateSubItem('editor');
         }
@@ -205,6 +214,11 @@ export const SmartAiView: React.FC<SmartAiViewProps> = ({
   };
 
   const handleNavigateBack = () => {
+    setIsEditorMode(false);          // ✅ force select screen
+    setScripts([]);                  // clear any leftover data
+    setInitialScripts([]);
+    setIsDirty(false);
+
     if (propOnSelectScript) propOnSelectScript(null);
     if (onNavigateSubItem) onNavigateSubItem('select');
   };
@@ -212,7 +226,7 @@ export const SmartAiView: React.FC<SmartAiViewProps> = ({
   const cleanSubTab = activeSubTab.replace('smartai:', '');
 
   // Select Screen
-  if (cleanSubTab === 'select' || !propSelectedScript) {
+  if (cleanSubTab === 'select' || !isEditorMode) {
     return (
       <SmartAiSelectScreen
         searchSourceType={searchSourceType}
